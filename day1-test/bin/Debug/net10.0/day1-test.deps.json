@@ -8,8 +8,8 @@
     ".NETCoreApp,Version=v10.0": {
       "day1-test/1.0.0": {
         "dependencies": {
-          "Day1": "1.0.0",
           "MSTest": "4.0.1",
+          "day1": "1.0.0",
           "MSTest.TestFramework.Extensions": "4.0.1.0"
         },
         "runtime": {
@@ -998,9 +998,9 @@
           }
         }
       },
-      "Day1/1.0.0": {
+      "day1/1.0.0": {
         "runtime": {
-          "Day1.dll": {
+          "day1.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1148,7 +1148,7 @@
       "path": "newtonsoft.json/13.0.3",
       "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
-    "Day1/1.0.0": {
+    "day1/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
