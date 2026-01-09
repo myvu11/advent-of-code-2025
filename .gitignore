@@ -1,0 +1,16 @@
+# Build results
+bin/
+obj/
+**/bin/
+**/obj/
+
+# Debug / Release
+Debug/
+Release/
+x64/
+x86/
+ARM/
+ARM64/
+
+# Visual Studio Code
+.vscode/
