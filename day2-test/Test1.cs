@@ -24,10 +24,11 @@ public sealed class Test1
     Assert.IsTrue(actual);
   }
 
-  // [TestMethod]
+  [TestMethod]
   public void ReadInputFile()
   {
-    string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day2-test\\test-example.txt";
+    // string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day2-test\\test-example.txt";
+    string path = Path.Combine(AppContext.BaseDirectory, "test-example.txt");
     ProductId productId = new();
     string[] ranges = productId.GetRangesFromFile(path);
     string[] expected = ["11-22", "95-115", "998-1012", "1188511880-1188511890", "222220-222224", "1698522-1698528", "446443-446449", "38593856-38593862", "565653-565659", "824824821-824824827", "2121212118-2121212124"];
