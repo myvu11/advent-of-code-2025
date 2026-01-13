@@ -97,7 +97,7 @@ namespace Day2
 
     public static void Main()
     {
-      string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day2\\day2-input.txt";
+      string path = Path.Combine(AppContext.BaseDirectory, "day2-input.txt");
       ProductId productId = new();
       long sum = productId.GetSumFromRanges(path);
       Console.WriteLine("Sum: {0:G}", sum);

@@ -3,9 +3,9 @@ namespace Day1
 {
   public class Password(int start)
   {
-    public int CountZero{get; set;} = 0;
-    public int CurDial{get; set;} = start;
-    public int PrevDial{get; set;}
+    public int CountZero { get; set; } = 0;
+    public int CurDial { get; set; } = start;
+    public int PrevDial { get; set; }
     public int TurnLeft(int dialNo)
     {
       CurDial = (CurDial - dialNo) % 100;
@@ -41,18 +41,18 @@ namespace Day1
 
       int holdDial = dialNo % 100;
 
-      if(isLeftDial && prevDial > 0 && (prevDial - holdDial) < 0)
+      if (isLeftDial && prevDial > 0 && (prevDial - holdDial) < 0)
       {
         CountZero++;
       }
-        else if(!isLeftDial && (prevDial + holdDial) > 100)
+      else if (!isLeftDial && (prevDial + holdDial) > 100)
       {
         CountZero++;
       }
 
     }
     public void Rotate(string line)
-      {
+    {
       int dialNo = GetDialNo(line);
       bool isLeftDial = Equals(line[0], 'L');
       PrevDial = CurDial;
@@ -73,7 +73,7 @@ namespace Day1
     {
       StreamReader sr = new(path);
       string? line = sr.ReadLine();
-      while (line!=null)
+      while (line != null)
       {
         Rotate(line);
         line = sr.ReadLine();
@@ -84,7 +84,8 @@ namespace Day1
 
     public static void Main()
     {
-      string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day1\\day1-input.txt";
+      string path = Path.Combine(AppContext.BaseDirectory, "day1-input.txt");
+      // string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day1\\day1-input.txt";
       Password password = new(50);
       int count = password.GetPassWord(path);
       Console.WriteLine("count: {0:G}", count);

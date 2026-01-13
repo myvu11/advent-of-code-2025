@@ -53,7 +53,7 @@ public sealed class Test1
   // [TestMethod]
   public void TestExampleCount()
   {
-    string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day1-test\\test-example.txt";
+    string path = Path.Combine(AppContext.BaseDirectory, "Input", "test-example.txt");
     Password password = new(50);
     int actual = password.GetPassWord(path);
     Assert.AreEqual(3, actual);
@@ -187,7 +187,7 @@ public sealed class Test1
   [TestMethod]
   public void TestPart2SimpleCount()
   {
-    string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day1-test\\test-part2.txt";
+    string path = Path.Combine(AppContext.BaseDirectory, "Input", "test-part2.txt");
     Password password = new(50);
     int actual = password.GetPassWord(path);
     Assert.AreEqual(24, actual);
@@ -196,7 +196,7 @@ public sealed class Test1
   [TestMethod]
   public void TestPart2Example()
   {
-    string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day1-test\\test-example.txt";
+    string path = Path.Combine(AppContext.BaseDirectory, "Input", "test-example.txt");
     Password password = new(50);
     int actual = password.GetPassWord(path);
     Assert.AreEqual(6, actual);
