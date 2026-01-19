@@ -1,39 +1,43 @@
-﻿namespace Day3
+﻿using System.Text;
+
+namespace Day3
 {
   public class JoltageCalculator
   {
     public JoltageCalculator() { }
-    public string GetLargestJoltageFromBank(string bank)
+    public static StringBuilder GetLargestJoltageFromBank(int[] digits, int targetLength)
     {
-      List<int> digitBank = [.. bank.Select(c => c - '0')];
-      int indexMaxDigit = digitBank.FindIndex(e => e == digitBank.Max());
-      if (indexMaxDigit == digitBank.Count - 1)
-      {
-        List<int> digitBankLastOmitted = [.. digitBank.SkipLast(1)];
-        indexMaxDigit = digitBank.FindIndex(e => e == digitBankLastOmitted.Max());
-      }
-      string highestDigit = digitBank[indexMaxDigit].ToString();
-      string max = highestDigit;
+      var maxJoltage = new StringBuilder();
+      int startIndex = -1;
 
-      for (int i = indexMaxDigit + 1; i < digitBank.Count; i++)
+      for (int digitsUsed = 0; digitsUsed < targetLength; digitsUsed++)
       {
-        string cur = highestDigit + digitBank[i].ToString();
-        max = Int32.Parse(cur) < Int32.Parse(max) ? max : cur;
+        startIndex += 1;
+        int endIndex = digits.Length - targetLength + digitsUsed;
+
+        for (int i = startIndex; i <= endIndex; i++)
+        {
+          if (digits[i] > digits[startIndex])
+          {
+            startIndex = i;
+          }
+        }
+        maxJoltage.Append(digits[startIndex]);
       }
 
-      return max;
+      return maxJoltage;
     }
 
-    public int TotalOutputJoltage(string[] banks)
+    public static long TotalOutputJoltage(string[] banks, int joltageLength)
     {
-      int totalJoltage = 0;
+      long totalJoltage = 0;
       foreach (string bank in banks)
       {
-        totalJoltage += Int32.Parse(GetLargestJoltageFromBank(bank));
+        int[] digitBank = [.. bank.Select(c => c - '0')];
+        totalJoltage += long.Parse(GetLargestJoltageFromBank(digitBank, joltageLength).ToString());
       }
       return totalJoltage;
     }
-
 
     public static string[] GetBanksFromFile(string path)
     {
@@ -46,8 +50,12 @@
       string path = Path.Combine(AppContext.BaseDirectory, "Input", "day3-input.txt");
       JoltageCalculator calculator = new();
       string[] banks = GetBanksFromFile(path);
-      int total = calculator.TotalOutputJoltage(banks);
-      Console.WriteLine("Total joltage: {0:G}", total);
+      int partOneJoltageLength = 2;
+      int partTwoJoltageLength = 12;
+      long partOneTotal = TotalOutputJoltage(banks, partOneJoltageLength);
+      long partTwoTotal = TotalOutputJoltage(banks, partTwoJoltageLength);
+      Console.WriteLine("Part 1 Total Joltage: {0:G}", partOneTotal);
+      Console.WriteLine("Part 2 Total Joltage: {0:G}", partTwoTotal);
 
     }
   }

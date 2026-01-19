@@ -22,8 +22,9 @@ public sealed class Test1
     public void ConvertToIntArray()
     {
         JoltageCalculator calculator = new();
-        string banks = "987654321111111";
-        string actual = calculator.GetLargestJoltageFromBank(banks);
+        string bank = "987654321111111";
+        int[] digitBank = [.. bank.Select(c => c - '0')];
+        string actual = JoltageCalculator.GetLargestJoltageFromBank(digitBank, 2).ToString();
         string expected = "98";
         Assert.AreEqual(expected, actual);
     }
@@ -38,7 +39,8 @@ public sealed class Test1
         string[] actual = new string[banks.Length];
         for (int i = 0; i < banks.Length; i++)
         {
-            actual[i] = calculator.GetLargestJoltageFromBank(banks[i]);
+            int[] digitBank = [.. banks[i].Select(c => c - '0')];
+            actual[i] = JoltageCalculator.GetLargestJoltageFromBank(digitBank, 2).ToString();
         }
         for (int i = 0; i < banks.Length; i++)
         {
@@ -51,9 +53,19 @@ public sealed class Test1
         JoltageCalculator calculator = new();
         string path = Path.Combine(AppContext.BaseDirectory, "Input", "day3-input-simple.txt");
         string[] banks = JoltageCalculator.GetBanksFromFile(path);
-        int actual = calculator.TotalOutputJoltage(banks);
-        int expected = 357;
+        long actual = JoltageCalculator.TotalOutputJoltage(banks, 2);
+        long expected = 357;
         Assert.AreEqual(expected, actual);
 
+    }
+    [TestMethod]
+    public void GetTotalJoltageTwelveDigits()
+    {
+        JoltageCalculator calculator = new();
+        string path = Path.Combine(AppContext.BaseDirectory, "Input", "day3-input-simple.txt");
+        string[] banks = JoltageCalculator.GetBanksFromFile(path);
+        long actual = JoltageCalculator.TotalOutputJoltage(banks, 12);
+        long expected = 3121910778619;
+        Assert.AreEqual(expected, actual);
     }
 }
