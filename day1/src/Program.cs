@@ -77,7 +77,6 @@ namespace Day1
       {
         Rotate(line);
         line = sr.ReadLine();
-        // Console.WriteLine("dial: {0:G}; cur: {1:G}; prev: {2:G}", line, CurDial, PrevDial);
       }
       return CountZero;
     }
@@ -85,7 +84,6 @@ namespace Day1
     public static void Main()
     {
       string path = Path.Combine(AppContext.BaseDirectory, "day1-input.txt");
-      // string path = "C:\\Users\\My Anh\\Documents\\Project\\AdventOfCode2025\\day1\\day1-input.txt";
       Password password = new(50);
       int count = password.GetPassWord(path);
       Console.WriteLine("count: {0:G}", count);
